@@ -9,7 +9,7 @@
 		</div>
 		<div class="col-lg-2">
 			<div class="pull-right">
-				<a class="btn btn-primary" href="{{ route('products.create') }}">Add a Product</a>
+				<a class="btn btn-success" href="{{ route('products.create') }}">Add a Product</a>
 			</div>
 		</div>
 	</div>
