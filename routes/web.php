@@ -18,7 +18,3 @@ Route::get('/', function () {
 });
 
 Route::resource('/products', ProductController::class);
-
-Route::get('/hello',function(){
-    return view('hello');
-});
