@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-lg-10 margin-tb">
 			<div class="pull-left">
-				<h2>Add a Product</h2>
+				<h2>Editing {{$product->name}}</h2>
 			</div>
 		</div>
 		<div class="col-lg-2">
@@ -28,14 +28,15 @@
 	</div>
 	@endif
 
-	<form method="POST" action="{{ route('products.store') }}">
+	<form method="POST" action="{{ route('products.update', $product->id) }}">
 		@csrf
-		@method('POST')
+		@method('PUT')
+
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Name:</strong>
-					<input type="text" name="name" class="form-control" placeholder="Product Name">
+					<input type="text" name="name" class="form-control" placeholder="Product Name" value="{{$product->name}}">
 				</div>
 			</div>
 		</div>
@@ -44,7 +45,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Price:</strong>
-					<input type="number" name="price" class="form-control" placeholder="Price">
+					<input type="number" name="price" class="form-control" placeholder="Price" value="{{$product->price}}">
 				</div>
 			</div>
 		</div>
@@ -53,7 +54,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<strong>Details:</strong>
-					<textarea class="form-control" name="detail" placeholder="Detail" style="height: 100px;"></textarea>
+					<textarea class="form-control" name="detail" placeholder="Detail" style="height: 100px;">{{$product->detail}}</textarea>
 				</div>
 			</div>
 		</div>

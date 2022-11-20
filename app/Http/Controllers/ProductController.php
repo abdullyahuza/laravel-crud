@@ -15,6 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->paginate(5);
+        
         $title = 'Home';
         // tell the view the page we are on using with
         return view('products.index', compact(['products','title']))->with(request()->input('page'));
@@ -41,7 +42,8 @@ class ProductController extends Controller
         //validate user input
         $request->validate([
             'name' => 'required',
-            'price' => 'required'
+            'price' => 'required',
+            'detail' => 'required'
         ]);
         // create a new product
         Product::create($request->all());
@@ -70,6 +72,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        return view('products.edit', ['product' => $product,'title' => 'edit']);
     }
 
     /**
@@ -81,7 +84,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        //validate user input
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'detail' => 'required'
+        ]);
+        // create a new product
+        $product->update($request->all());
+        // redirect the user with success message
+        return redirect()->route('products.index')->with('success','Product Updated.');
     }
 
     /**
@@ -92,6 +104,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success','Product Deleted.');
     }
 }
